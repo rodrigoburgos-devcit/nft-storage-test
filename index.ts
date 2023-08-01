@@ -1,6 +1,8 @@
 import path from 'path';
 import fs from 'fs'
 import { ImageTextEditor } from './methods/ImageEditor';
+import { HandleNFTStorage } from "./methods";
+
 
 const main = () => {
     const outputFolder = path.join(__dirname, 'output'); // Define the output folder (you can change 'output' to your desired folder name)
@@ -20,13 +22,18 @@ const main = () => {
         .addTextToImage('img.jpg', 'Teste título', 'Teste subtítulo', outputImagePath)
         .then(() => {
             console.log('Text added to the image successfully');
+            const result = new HandleNFTStorage(`./assets/img.jpg`)
+            result.setMetadata('nft', 'taFoda', './output/output_image.jpg').then((res) => {
+                console.log(res)
+            })
         })
         .catch((err: any) => {
             console.error('Error adding text to image:', err);
         });
 };
 
-main();
+main();+
+++++++++++++++++++++++++]
 
 
 // import { HandleNFTStorage } from "./methods";
@@ -34,14 +41,14 @@ main();
 // import { ImageTextEditor } from "./methods/ImageEditor";
 
 // const main = () => {
-//     // const result = new HandleNFTStorage(`./assets/img.jpg`)
+//     const result = new HandleNFTStorage(`./assets/img.jpg`)
 //     const image = new ImageTextEditor(680, 383)
 //     image.addTextToImage('./assets/img.jpg', 'Teste título', 'Teste subtítulo', './assets').then((res) => {
 //         console.log(res)
 //     })
-//     // result.setMetadata('nft', 'taFoda', './assets/img.jpg').then((res) => {
-//     //     console.log(res)
-//     // })
+//     result.setMetadata('nft', 'taFoda', './assets/img.jpg').then((res) => {
+//         console.log(res)
+//     })
 // }
 
 // main()
