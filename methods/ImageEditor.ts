@@ -1,8 +1,13 @@
 import { createCanvas, loadImage, registerFont } from 'canvas';
 import * as fs from 'fs';
+import path from 'path';
 
-// Make sure you have the font file (e.g., 'Arial.ttf') in the same directory as this script
-const FONT_PATH = '../assets/Arial.ttf';
+const FONT_FILENAME = 'arial.ttf';
+const IMG_FILENAME = 'img.jpg';
+
+
+const FONT_PATH = path.resolve('./assets', FONT_FILENAME);
+const ASSETS_FOLDER = path.resolve('./assets', IMG_FILENAME); // Full path to the 'assets' folder
 
 export class ImageTextEditor {
   private canvas: any;
@@ -13,10 +18,13 @@ export class ImageTextEditor {
     this.ctx = this.canvas.getContext('2d');
   }
 
-  async addTextToImage(imagePath: string, title: string, subtitle: string, outputImagePath: string) {
+  async addTextToImage(imageFileName: string, title: string, subtitle: string, outputImagePath: string) {
+    console.log(FONT_PATH, 'FONT_PATH')
+    console.log(ASSETS_FOLDER, 'ASSETS_FOLDER')
+
     try {
       // Load the existing image
-      const image = await loadImage(imagePath);
+      const image = await loadImage(ASSETS_FOLDER);
 
       // Set canvas dimensions to match the image
       this.canvas.width = this.width;

@@ -20,7 +20,6 @@ export class HandleNFTStorage extends getFileBits {
             description: description,
             image: fileBits
         })
-
         return res
     }
 }
